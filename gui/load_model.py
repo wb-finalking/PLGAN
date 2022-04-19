@@ -17,9 +17,9 @@ args = parser.parse_args()
 
 
 def get_model():
-    if not os.path.isdir(os.path.join('src', args.output_dir)):
+    if not os.path.isdir(os.path.join('gui', args.output_dir)):
         print('Output directory "%s" does not exist; creating it' % args.output_dir)
-        os.makedirs(os.path.join('src', args.output_dir))
+        os.makedirs(os.path.join('gui', args.output_dir))
 
     # device = torch.device('cuda:0')
 
@@ -54,7 +54,7 @@ def json_to_img(scene_graph, model):
     for i in range(imgs.shape[0]):
         img_np = imgs[i].numpy().transpose(1, 2, 0).astype('uint8')
         return_img_path = os.path.join(output_dir, 'img{}.png'.format(current_time))
-        img_path = os.path.join('src', output_dir, 'img{}.png'.format(current_time))
+        img_path = os.path.join('gui', output_dir, 'img{}.png'.format(current_time))
         imwrite(img_path, img_np)
 
         # img_np_org = imgs_org[i].numpy().transpose(1, 2, 0).astype('uint8')
@@ -86,7 +86,7 @@ def json_to_img(scene_graph, model):
         one_hot[:, 0] = 0
         layout = one_hot_to_rgb(one_hot, model.colors[:num_class, :])[0].numpy().transpose(1, 2, 0).astype('uint8')
         return_layout_path = os.path.join(output_dir, 'layouts{}.png'.format(current_time))
-        layout_path = os.path.join('src', output_dir, 'layouts{}.png'.format(current_time))
+        layout_path = os.path.join('gui', output_dir, 'layouts{}.png'.format(current_time))
         imwrite(layout_path, layout)
 
     return return_img_path, return_layout_path
