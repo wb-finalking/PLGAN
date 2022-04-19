@@ -1,0 +1,9 @@
+matplotlib
+numpy
+imageio
+scikit-image
+opencv-contrib-python==3.4.2.16
+tensorboardX
+scipy
+Cython
+pycocotools
